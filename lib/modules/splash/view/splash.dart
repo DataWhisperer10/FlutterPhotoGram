@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/modules/login/view/login.dart';
-import 'package:photogram/modules/register/view/register.dart';
+import 'package:photogram/modules/register/view/register_1.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -55,7 +55,7 @@ class _SplashState extends State<Splash> {
           })));
         } else {
           Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-            return Login();
+            return Register1();
           })));
         }
       },

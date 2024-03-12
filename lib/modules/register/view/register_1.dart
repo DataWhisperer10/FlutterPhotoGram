@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/app_utils.dart';
-import 'package:photogram/modules/home/view/home.dart';
+import 'package:photogram/modules/register/view/register_2.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register1 extends StatefulWidget {
+  const Register1({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register1> createState() => _Register1State();
 }
 
-class _LoginState extends State<Login> {
+class _Register1State extends State<Register1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
             Padding(
               padding: EdgeInsets.only(top: 105),
               child: Text(
-                "Log in",
+                "Register",
                 style: GoogleFonts.comfortaa(fontSize: 36),
               ),
             ),
@@ -40,9 +40,9 @@ class _LoginState extends State<Login> {
               child: TextField(
                   decoration: InputDecoration(border: OutlineInputBorder())),
             ),
-            AppUtils.commonButtonFullWidth("LOG IN", () {
+            AppUtils.commonButtonFullWidth("NEXT", () {
               Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-                return const Home();
+                return const Register2();
               })));
             })
           ],
