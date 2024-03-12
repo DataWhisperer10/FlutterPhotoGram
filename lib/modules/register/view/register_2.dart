@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/app_utils.dart';
-import 'package:photogram/modules/home/view/home.dart';
+import 'package:photogram/modules/room/view/room.dart';
 
 class Register2 extends StatefulWidget {
   const Register2({super.key});
@@ -38,7 +38,7 @@ class _Register2State extends State<Register2> {
             ),
             AppUtils.commonButtonFullWidth("SIGN UP", () {
               Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-                return const Home();
+                return const Room();
               })));
             }),
             Padding(
