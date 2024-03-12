@@ -102,13 +102,11 @@ class _SplashState extends State<Splash> {
             child: SizedBox(
               height: height / 15,
               width: width / 15,
-              child: Center(
-                child: Stack(
-                  children: [
-                    Image.asset("assets/union_1.png"),
-                    Image.asset("assets/union.png")
-                  ],
-                ),
+              child: Stack(
+                children: [
+                  Image.asset("assets/union_1.png"),
+                  Image.asset("assets/union.png")
+                ],
               ),
             ),
           ),
