@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
@@ -51,11 +48,11 @@ class _SplashState extends State<Splash> {
       onTap: () {
         if (isLogin) {
           Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-            return Login();
+            return const Login();
           })));
         } else {
           Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-            return Register1();
+            return const Register1();
           })));
         }
       },
@@ -105,11 +102,13 @@ class _SplashState extends State<Splash> {
             child: SizedBox(
               height: height / 15,
               width: width / 15,
-              child: Stack(
-                children: [
-                  Image.asset("assets/union_1.png"),
-                  Image.asset("assets/union.png")
-                ],
+              child: Center(
+                child: Stack(
+                  children: [
+                    Image.asset("assets/union_1.png"),
+                    Image.asset("assets/union.png")
+                  ],
+                ),
               ),
             ),
           ),

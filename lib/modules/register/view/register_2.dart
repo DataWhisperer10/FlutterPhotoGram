@@ -23,18 +23,13 @@ class _Register2State extends State<Register2> {
             Padding(
               padding: EdgeInsets.only(top: 105),
               child: Text(
-                "REGISTER",
+                "Register",
                 style: GoogleFonts.comfortaa(fontSize: 36),
               ),
             ),
             SizedBox(
               height: AppSizing.screenSizeonHeight(32),
             ),
-            // const Padding(
-            //   padding: EdgeInsets.only(bottom: 16.0),
-            //   child: TextField(
-            //       decoration: InputDecoration(border: OutlineInputBorder())),
-            // ),
             const Padding(
               padding: EdgeInsets.only(bottom: 16.0),
               child: TextField(
@@ -44,7 +39,15 @@ class _Register2State extends State<Register2> {
               Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
                 return const Home();
               })));
-            })
+            }),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: SizedBox(
+                height: AppSizing.screenSizeonHeight(33),
+                child: const Text(
+                    "By signing up, you agree to Photo's Terms of Service and Privacy Policy."),
+              ),
+            ),
           ],
         ),
       ),
