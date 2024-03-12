@@ -33,7 +33,8 @@ class _Register2State extends State<Register2> {
             const Padding(
               padding: EdgeInsets.only(bottom: 16.0),
               child: TextField(
-                  decoration: InputDecoration(border: OutlineInputBorder())),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: "the_gajanand")),
             ),
             AppUtils.commonButtonFullWidth("SIGN UP", () {
               Navigator.of(context).push(MaterialPageRoute(builder: ((context) {

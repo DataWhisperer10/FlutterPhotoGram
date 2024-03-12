@@ -33,12 +33,19 @@ class _Register1State extends State<Register1> {
             const Padding(
               padding: EdgeInsets.only(bottom: 16.0),
               child: TextField(
-                  decoration: InputDecoration(border: OutlineInputBorder())),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'gajanand@example.com',
+                      hintStyle: TextStyle(color: Colors.black))),
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 16.0),
               child: TextField(
-                  decoration: InputDecoration(border: OutlineInputBorder())),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: '..........',
+                      hintStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold))),
             ),
             AppUtils.commonButtonFullWidth("NEXT", () {
               Navigator.of(context).push(MaterialPageRoute(builder: ((context) {

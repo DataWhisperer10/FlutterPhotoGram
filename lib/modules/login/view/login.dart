@@ -33,12 +33,18 @@ class _LoginState extends State<Login> {
             const Padding(
               padding: EdgeInsets.only(bottom: 16.0),
               child: TextField(
-                  decoration: InputDecoration(border: OutlineInputBorder())),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'gajanand@example.com',
+                      hintStyle: TextStyle(color: Colors.black))),
             ),
             const Padding(
               padding: EdgeInsets.only(bottom: 16.0),
               child: TextField(
-                  decoration: InputDecoration(border: OutlineInputBorder())),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: '.........',
+                      hintStyle: TextStyle(fontWeight: FontWeight.bold))),
             ),
             AppUtils.commonButtonFullWidth("LOG IN", () {
               Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
