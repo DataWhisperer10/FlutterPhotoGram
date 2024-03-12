@@ -4,7 +4,7 @@ class AppSizing {
   AppSizing._();
   static late double screenHeight;
   static late double screenWidth;
-  init(context) {
+  static init(context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
   }
