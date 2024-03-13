@@ -8,36 +8,71 @@ class Room extends StatefulWidget {
   State<Room> createState() => _RoomState();
 }
 
+enum RoomIcons { home, search, create, chat, profile }
+
 class _RoomState extends State<Room> {
+  RoomIcons currentSelection = RoomIcons.home;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/app_icons/home.png",
-              height: AppSizing.screenSizeonHeight(80),
-            ),
-            label: "Home"),
-        BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/app_icons/search.png",
-              height: AppSizing.screenSizeonHeight(80),
-            ),
-            label: "Search"),
-        BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/app_icons/chat.png",
-              height: AppSizing.screenSizeonHeight(80),
-            ),
-            label: "Chat"),
-        BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/app_icons/profile.png",
-              height: AppSizing.screenSizeonHeight(80),
-            ),
-            label: "Profile")
-      ]),
-    );
+    return Scaffold(bottomNavigationBar: bottomNav());
+  }
+
+  Map indexToEnum = {
+    0: RoomIcons.home,
+    1: RoomIcons.search,
+    2: RoomIcons.create,
+    3: RoomIcons.chat,
+    4: RoomIcons.profile,
+  };
+  Map enumToIcon = {
+    RoomIcons.home: "assets/app_icons/home.png",
+    RoomIcons.search: "assets/app_icons/search.png",
+    RoomIcons.chat: "assets/app_icons/chat.png",
+    RoomIcons.profile: "assets/app_icons/profile.png",
+  };
+  Widget bottomNav() {
+    return BottomNavigationBar(
+        onTap: (i) {
+          currentSelection = indexToEnum[i];
+          setState(() {});
+        },
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          commonIcon(RoomIcons.home),
+          commonIcon(RoomIcons.search),
+          BottomNavigationBarItem(
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Container(
+                  height: AppSizing.screenSizeonHeight(40),
+                  width: AppSizing.screenSizeonWidth(70),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      gradient: const LinearGradient(
+                          // ignore: use_full_hex_values_for_flutter_colors
+                          colors: [Color(0xffFF00D6), Color(0xfffff4d00)],
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft)),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              label: "Add"),
+          commonIcon(RoomIcons.chat),
+          commonIcon(RoomIcons.profile),
+        ]);
+  }
+
+  BottomNavigationBarItem commonIcon(RoomIcons roomIcons) {
+    return BottomNavigationBarItem(
+        icon: Image.asset(
+          enumToIcon[roomIcons],
+          color: currentSelection == roomIcons ? Colors.blueAccent : null,
+          height: AppSizing.screenSizeonHeight(80),
+        ),
+        label: "");
   }
 }

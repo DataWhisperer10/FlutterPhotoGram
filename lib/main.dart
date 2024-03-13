@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/modules/room/view/room.dart';
-import 'package:photogram/modules/splash/view/splash.dart';
 
 void main() {
   runApp(const MyApp());
