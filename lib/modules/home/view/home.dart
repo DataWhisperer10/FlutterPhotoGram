@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
 
   Widget crouselSlider() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: SizedBox(
         height: AppSizing.screenSizeonHeight(343),
         width: double.infinity,
