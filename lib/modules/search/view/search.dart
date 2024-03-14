@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:photogram/app_sizing.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -11,6 +12,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  int multipleImage = 1;
   TextEditingController textEditingController = TextEditingController();
   static const List<Map> searchImages = [
     {
@@ -155,7 +157,7 @@ class _SearchState extends State<Search> {
                     .toList();
                 setState(() {});
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.search),
                   hintText: "Search Category Here"),
@@ -178,6 +180,32 @@ class _SearchState extends State<Search> {
               },
             ),
           ),
+          const SizedBox(
+            height: 14,
+          ),
+          InkWell(
+            onTap: () {
+              setState(() {
+                multipleImage++;
+              });
+            },
+            child: Container(
+              height: AppSizing.screenSizeonHeight(40),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(6)),
+              child: Center(
+                child: Text(
+                  "See More",
+                  style: GoogleFonts.roboto(
+                      color: Colors.black,
+                      fontSize: min(13, AppSizing.screenSizeonWidth(20)),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

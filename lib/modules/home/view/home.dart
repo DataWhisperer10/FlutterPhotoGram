@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
+import 'package:photogram/modules/home/view/home_image_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -63,7 +64,16 @@ class _HomeState extends State<Home> {
               crossAxisSpacing: 4,
               itemCount: (images.length * multipleImage),
               itemBuilder: (context, index) {
-                return Image.network(images[index % ((images.length - 1))]);
+                return InkWell(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return HomeImageView(
+                            imageUrl: images[index % ((images.length - 1))]);
+                      }));
+                    },
+                    child:
+                        Image.network(images[index % ((images.length - 1))]));
               },
             ),
             const SizedBox(
