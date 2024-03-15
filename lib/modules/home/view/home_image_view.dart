@@ -17,7 +17,7 @@ class _HomeScreenViewState extends State<HomeImageView> {
         width: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(widget.imageUrl), fit: BoxFit.fill)),
+                image: NetworkImage(widget.imageUrl), fit: BoxFit.cover)),
       ),
     );
   }

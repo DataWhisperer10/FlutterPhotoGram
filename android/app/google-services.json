@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "430876321536",
+    "project_id": "movieapp-4e413",
+    "storage_bucket": "movieapp-4e413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430876321536:android:63fdfd518b8fd08e8ab5e5",
+        "android_client_info": {
+          "package_name": "com.example.photogram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXAiRiFp2zNedvnKCYPzCH5Ci-lhEkfok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
