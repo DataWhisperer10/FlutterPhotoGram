@@ -162,57 +162,63 @@ class _ChatState extends State<Chat> {
       body: ListView.builder(
           itemCount: chatUsers.length,
           itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return ChatMessage(
-                            userData: chatUsers[index] as Map<String, String>);
-                      }));
-                    },
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: AppSizing.screenSizeonHeight(32),
-                          backgroundImage:
-                              NetworkImage(chatUsers[index]["Image"]!),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              chatUsers[index]['Name']!,
-                              style: GoogleFonts.roboto(
-                                  fontSize: 13, fontWeight: FontWeight.bold),
+            return Flexible(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return ChatMessage(
+                              userData:
+                                  chatUsers[index] as Map<String, String>);
+                        }));
+                      },
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: AppSizing.screenSizeonHeight(32),
+                            backgroundImage:
+                                NetworkImage(chatUsers[index]["Image"]!),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  chatUsers[index]['Name']!,
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  chatUsers[index]['Message']!,
+                                  style: GoogleFonts.roboto(fontSize: 13),
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              chatUsers[index]['Message']!,
-                              style: GoogleFonts.roboto(fontSize: 13),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        const Icon(Icons.chevron_right),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ],
+                          ),
+                          const Spacer(),
+                          const Icon(Icons.chevron_right),
+                          // const SizedBox(
+                          //   height: 10,
+                          // ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const Divider()
-              ],
+                  const Divider()
+                ],
+              ),
             );
           }),
     );

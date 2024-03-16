@@ -5,7 +5,12 @@ import 'package:photogram/modules/splash/view/splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: 'AIzaSyDXAiRiFp2zNedvnKCYPzCH5Ci-lhEkfok',
+          appId: '1:430876321536:android:63fdfd518b8fd08e8ab5e5',
+          messagingSenderId: '',
+          projectId: 'movieapp-4e413'));
 
   runApp(const MyApp());
 }

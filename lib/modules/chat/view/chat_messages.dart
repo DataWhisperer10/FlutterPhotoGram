@@ -214,7 +214,7 @@ class _ChatMessageState extends State<ChatMessage> {
           Flexible(
               child: Container(
             constraints: BoxConstraints(
-                minHeight: 40, minWidth: MediaQuery.of(context).size.width / 4),
+                minHeight: 40, minWidth: MediaQuery.of(context).size.width / 2),
             decoration: const BoxDecoration(
                 color: Colors.black12,
                 borderRadius: BorderRadius.only(

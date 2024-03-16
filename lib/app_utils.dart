@@ -7,7 +7,7 @@ class AppUtils {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: AppSizing.screenSizeonHeight(52),
+        height: AppSizing.screenSizeonHeight(50),
         width: double.infinity,
         decoration: BoxDecoration(
             color: Colors.black,

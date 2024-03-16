@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 9.0),
+              padding: const EdgeInsets.only(right: 7.0),
               child: bootomNavButton('LOG IN', true),
             ),
             bootomNavButton('REGISTER', false)

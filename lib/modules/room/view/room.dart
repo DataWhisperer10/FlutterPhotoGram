@@ -3,7 +3,7 @@ import 'package:photogram/app_sizing.dart';
 import 'package:photogram/modules/add_post/view/create.dart';
 import 'package:photogram/modules/chat/view/chat.dart';
 import 'package:photogram/modules/home/view/home.dart';
-import 'package:photogram/modules/profile/view/profile.dart';
+import 'package:photogram/modules/profile/view/profile_view.dart';
 import 'package:photogram/modules/search/view/search.dart';
 
 class Room extends StatefulWidget {
@@ -36,7 +36,7 @@ class _RoomState extends State<Room> {
     RoomIcons.search: Search(),
     RoomIcons.create: Create(),
     RoomIcons.chat: Chat(),
-    RoomIcons.profile: Profile(),
+    RoomIcons.profile: ProfileView(),
   };
 
   @override
@@ -69,7 +69,7 @@ class _RoomState extends State<Room> {
         icon: Image.asset(
           enumToIcon[roomIcons],
           color: currentSelection == roomIcons ? Colors.blueAccent : null,
-          height: AppSizing.screenSizeonHeight(80),
+          height: AppSizing.screenSizeonHeight(50),
         ),
         label: "");
   }

@@ -146,21 +146,23 @@ class _SearchState extends State<Search> {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child: TextField(
-              controller: textEditingController,
-              onChanged: (v) {
-                tempSearchlist = searchImages
-                    .where((element) => element['category']
-                        .toString()
-                        .toLowerCase()
-                        .contains(v.toLowerCase()))
-                    .toList();
-                setState(() {});
-              },
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.search),
-                  hintText: "Search Category Here"),
+            child: SafeArea(
+              child: TextField(
+                controller: textEditingController,
+                onChanged: (v) {
+                  tempSearchlist = searchImages
+                      .where((element) => element['category']
+                          .toString()
+                          .toLowerCase()
+                          .contains(v.toLowerCase()))
+                      .toList();
+                  setState(() {});
+                },
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.search),
+                    hintText: "Search Category Here"),
+              ),
             ),
           ),
           Expanded(
@@ -205,6 +207,9 @@ class _SearchState extends State<Search> {
                 ),
               ),
             ),
+          ),
+          const SizedBox(
+            height: 10,
           )
         ],
       ),
