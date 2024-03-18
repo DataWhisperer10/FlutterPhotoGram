@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/app_utils.dart';
+import 'package:photogram/modules/room/view/room.dart';
 
 class LoginViaMobileOtp extends StatefulWidget {
   const LoginViaMobileOtp({super.key});
@@ -73,7 +74,7 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
             AppUtils.commonButtonFullWidth(
                 isOtpFieldVisible ? "Verify OTP" : "Send OTP", () {
               if (isOtpFieldVisible) {
-                verifyOTP();
+                verifyOTP(context);
               } else {
                 getOTP();
               }
@@ -102,9 +103,19 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
     );
   }
 
-  verifyOTP() async {
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId, smsCode: otpController.text);
-    await FirebaseAuth.instance.signInWithCredential(credential);
+  verifyOTP(context) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: otpController.text);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) {
+        return Room();
+      }), (p) => false);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Something Went Worng. Please try again later")));
+    }
   }
 }
