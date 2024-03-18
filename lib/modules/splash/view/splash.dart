@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
-import 'package:photogram/modules/login/view/login.dart';
+import 'package:photogram/modules/login/view/login_via_mobile_otp.dart';
 import 'package:photogram/modules/register/view/register_1.dart';
 
 class Splash extends StatefulWidget {
@@ -32,23 +32,23 @@ class _SplashState extends State<Splash> {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 7.0),
-              child: bootomNavButton('LOG IN', true),
+              child: bottomNavButton('LOG IN', true),
             ),
-            bootomNavButton('REGISTER', false)
+            bottomNavButton('REGISTER', false)
           ],
         ),
       ),
     );
   }
 
-  Widget bootomNavButton(buttonText, isLogin) {
+  Widget bottomNavButton(buttonText, isLogin) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
         if (isLogin) {
           Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-            return const Login();
+            return const LoginViaMobileOtp();
           })));
         } else {
           Navigator.of(context).push(MaterialPageRoute(builder: ((context) {

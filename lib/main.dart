@@ -1,16 +1,26 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/modules/splash/view/splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: 'AIzaSyDXAiRiFp2zNedvnKCYPzCH5Ci-lhEkfok',
-          appId: '1:430876321536:android:63fdfd518b8fd08e8ab5e5',
-          messagingSenderId: '',
-          projectId: 'movieapp-4e413'));
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: 'AIzaSyAvSVbsWxjaQuOmchBH8rbAkAUQ0yDOy5U',
+            appId: '1:430876321536:web:6675afa4f17ec7508ab5e5',
+            messagingSenderId: '430876321536',
+            projectId: 'movieapp-4e413'));
+  } else {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: 'AIzaSyDXAiRiFp2zNedvnKCYPzCH5Ci-lhEkfok',
+            appId: '1:430876321536:android:63fdfd518b8fd08e8ab5e5',
+            messagingSenderId: '',
+            projectId: 'movieapp-4e413'));
+  }
 
   runApp(const MyApp());
 }
