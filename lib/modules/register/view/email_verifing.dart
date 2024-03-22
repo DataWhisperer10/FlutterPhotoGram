@@ -22,7 +22,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
       if (FirebaseAuth.instance.currentUser?.emailVerified == true) {
         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
           builder: (context) {
-            return Room();
+            return const Room();
           },
         ), (p) => false);
         timer.cancel();
