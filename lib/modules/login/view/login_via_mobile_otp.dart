@@ -28,7 +28,7 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 105),
+              padding: const EdgeInsets.only(top: 105),
               child: Text(
                 "Log in Via Mobile OTP",
                 style: GoogleFonts.comfortaa(fontSize: 36),
@@ -38,7 +38,7 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
               height: AppSizing.screenSizeonHeight(32),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(bottom: 16.0),
               child: TextField(
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -56,7 +56,7 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
             Visibility(
               visible: isOtpFieldVisible,
               child: Padding(
-                padding: EdgeInsets.only(bottom: 16.0),
+                padding: const EdgeInsets.only(bottom: 16.0),
                 child: TextField(
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -78,9 +78,6 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
               } else {
                 getOTP();
               }
-              // Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-              //   return const Room();
-              // })));
             })
           ],
         ),
@@ -90,12 +87,12 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
 
   getOTP() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+91 {mobileNumberController.text}',
+      phoneNumber: '+91${mobileNumberController.text}',
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {},
-      codeSent: (String verificationId, int? resendToken) {
+      codeSent: (String id, int? resendToken) {
         setState(() {
-          verificationId = verificationId;
+          verificationId = id;
           isOtpFieldVisible = true;
         });
       },
@@ -107,15 +104,17 @@ class _LoginViaMobileOtpState extends State<LoginViaMobileOtp> {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: otpController.text);
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) {
-        return Room();
+        return const Room();
       }), (p) => false);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Something Went Worng. Please try again later")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Something Went Wrong. Please try again later"),
+        backgroundColor: Colors.redAccent,
+      ));
     }
   }
 }

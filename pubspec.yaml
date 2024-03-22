@@ -41,6 +41,7 @@ dependencies:
   firebase_core: ^2.27.1
   image_picker: ^1.0.7
   firebase_auth: ^4.17.9
+  dio: ^5.4.1
 
 dev_dependencies:
   change_app_package_name: ^1.1.0

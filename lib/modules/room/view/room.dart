@@ -7,7 +7,7 @@ import 'package:photogram/app_sizing.dart';
 import 'package:photogram/modules/add_post/view/create.dart';
 import 'package:photogram/modules/chat/view/chat.dart';
 import 'package:photogram/modules/home/view/home.dart';
-import 'package:photogram/modules/profile/view/profile_view.dart';
+import 'package:photogram/modules/profile/view/profile_update.dart';
 import 'package:photogram/modules/search/view/search.dart';
 
 class Room extends StatefulWidget {
@@ -42,7 +42,7 @@ class _RoomState extends State<Room> {
     RoomIcons.search: Search(),
     RoomIcons.create: Create(),
     RoomIcons.chat: Chat(),
-    RoomIcons.profile: ProfileView(),
+    RoomIcons.profile: ProfileUpdate(),
   };
 
   @override

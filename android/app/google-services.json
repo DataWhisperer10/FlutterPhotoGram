@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:430876321536:android:63fdfd518b8fd08e8ab5e5",
         "android_client_info": {
-          "package_name": "com.example.photogram1"
+          "package_name": "com.example.photogram"
         }
       },
       "oauth_client": [],
@@ -29,6 +29,25 @@
         "mobilesdk_app_id": "1:430876321536:android:66c5117a3182a9dc8ab5e5",
         "android_client_info": {
           "package_name": "com.example.photogram1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXAiRiFp2zNedvnKCYPzCH5Ci-lhEkfok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430876321536:android:d7264cf06aace8088ab5e5",
+        "android_client_info": {
+          "package_name": "com.example.photogram2"
         }
       },
       "oauth_client": [],

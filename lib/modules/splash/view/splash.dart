@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photogram/app_sizing.dart';
 import 'package:photogram/modules/login/view/login_via_mobile_otp.dart';
 import 'package:photogram/modules/register/view/register_1.dart';
+import 'package:photogram/modules/room/view/room.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -12,6 +14,19 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (FirebaseAuth.instance.currentUser != null) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) {
+          return Room();
+        }), (route) => false);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -32,9 +47,9 @@ class _SplashState extends State<Splash> {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 7.0),
-              child: bottomNavButton('LOG IN', true),
+              child: bottomNavButton('Log In VIA Phone', true),
             ),
-            bottomNavButton('REGISTER', false)
+            bottomNavButton('Login VIA Email', false),
           ],
         ),
       ),
@@ -47,13 +62,15 @@ class _SplashState extends State<Splash> {
     return InkWell(
       onTap: () {
         if (isLogin) {
-          Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: ((context) {
             return const LoginViaMobileOtp();
-          })));
+          })), (p) => false);
         } else {
-          Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: ((context) {
             return const Register1();
-          })));
+          })), (p) => false);
         }
       },
       child: Container(

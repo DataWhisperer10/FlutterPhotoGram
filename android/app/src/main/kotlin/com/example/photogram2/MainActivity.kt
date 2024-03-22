@@ -1,4 +1,4 @@
-package com.example.photogram1
+package com.example.photogram2
 
 import io.flutter.embedding.android.FlutterActivity
 
