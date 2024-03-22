@@ -12,21 +12,21 @@ class VerifyEmail extends StatefulWidget {
 }
 
 class _VerifyEmailState extends State<VerifyEmail> {
-  Timer? timer;
+  late Timer timer;
+  int time = 1;
   @override
   void initState() {
     FirebaseAuth.instance.currentUser?.sendEmailVerification();
-    timer = Timer(const Duration(seconds: 2), () {
-      FirebaseAuth.instance.currentUser?.reload().then((value) {
-        if (FirebaseAuth.instance.currentUser?.emailVerified == true) {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) {
-            return const Room();
-          }), (p) => false);
-          timer?.cancel();
-          setState(() {});
-        }
-      });
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      FirebaseAuth.instance.currentUser?.reload();
+      if (FirebaseAuth.instance.currentUser?.emailVerified == true) {
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+          builder: (context) {
+            return Room();
+          },
+        ), (p) => false);
+        timer.cancel();
+      }
     });
     super.initState();
   }
@@ -34,19 +34,18 @@ class _VerifyEmailState extends State<VerifyEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: Column(
-              children: [
-                Expanded(child: Image.asset("assets/email_verify.jpg")),
-                const SizedBox(height: 50),
-                const Text("Email Verification is Under Process"),
-                const LinearProgressIndicator(),
-                const SizedBox(height: 50)
-              ],
-            )
-            // ),
-            ));
+        body: SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Column(
+        children: [
+          Expanded(child: Image.asset("assets/email_verify.jpg")),
+          const SizedBox(height: 50),
+          const Text("Email Verification is Under Process"),
+          const LinearProgressIndicator(),
+          const SizedBox(height: 50)
+        ],
+      ),
+    ));
   }
 }
