@@ -9,17 +9,19 @@ Future<void> main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
         options: const FirebaseOptions(
-            apiKey: 'AIzaSyAvSVbsWxjaQuOmchBH8rbAkAUQ0yDOy5U',
-            appId: '1:430876321536:web:6675afa4f17ec7508ab5e5',
-            messagingSenderId: '430876321536',
-            projectId: 'movieapp-4e413'));
+            apiKey: 'AIzaSyBFLqnTVbByS4yCGhjrr7E3KMKg7jM8GFk',
+            appId: '1:664853678413:web:9d1be7f5df3771334b8f04',
+            messagingSenderId: '664853678413',
+            projectId: 'photogram2-38a57',
+            storageBucket: "photogram2-38a57.appspot.com"));
   } else {
     await Firebase.initializeApp(
         options: const FirebaseOptions(
-            apiKey: 'AIzaSyDXAiRiFp2zNedvnKCYPzCH5Ci-lhEkfok',
-            appId: '1:430876321536:android:63fdfd518b8fd08e8ab5e5',
+            apiKey: 'AIzaSyDfw3xAaZDRRMuMTUlaTsA6lVZL6KKVuDc',
+            appId: '1:664853678413:android:b7f6bda6ac53cb4a4b8f04',
             messagingSenderId: '',
-            projectId: 'movieapp-4e413'));
+            storageBucket: "photogram2-38a57.appspot.com",
+            projectId: 'photogram2-38a57'));
   }
 
   runApp(const MyApp());

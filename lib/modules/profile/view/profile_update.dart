@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +17,13 @@ class ProfileUpdate extends StatefulWidget {
 }
 
 class _ProfileUpdateState extends State<ProfileUpdate> {
+  final FirebaseStorage storage =
+      FirebaseStorage.instanceFor(bucket: "gs://photogram2-38a57.appspot.com");
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  final storageRef = FirebaseStorage.instance.ref();
+
   File? profileImage;
+
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController fullAddressController = TextEditingController();
@@ -80,8 +89,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
             child: TextField(
               controller: lastNameController,
               decoration: const InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: "Your Last Name "),
+                  border: OutlineInputBorder(), labelText: "Your Last Name "),
             ),
           ),
           Padding(
@@ -141,5 +149,18 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
     } else {
       return null;
     }
+  }
+
+  uploadImage() {
+    final imagesRef = storageRef.child(
+        "profileImage/${FirebaseAuth.instance.currentUser?.uid}.${profileImage?.path.split(".").last}");
+    UploadTask uploadTask = imagesRef.putFile(profileImage!);
+    uploadTask.whenComplete(() async {
+      String imageUrl = await imagesRef.getDownloadURL();
+      print(imageUrl);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text("Image uploaded Successfuly${imagesRef.getDownloadURL()}")));
+    });
   }
 }
