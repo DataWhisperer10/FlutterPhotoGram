@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -17,8 +18,7 @@ class ProfileUpdate extends StatefulWidget {
 }
 
 class _ProfileUpdateState extends State<ProfileUpdate> {
-  final FirebaseStorage storage =
-      FirebaseStorage.instanceFor(bucket: "gs://photogram2-38a57.appspot.com");
+  final FirebaseStorage storage = FirebaseStorage.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final storageRef = FirebaseStorage.instance.ref();
 
@@ -50,9 +50,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 children: [
                   CircleAvatar(
                     radius: AppSizing.screenSizeonWidth(30),
-                    backgroundImage: profileImage != null
-                        ? NetworkImage(profileImage!.path)
-                        : null,
+                    backgroundImage:
+                        profileImage != null ? imageProvider() : null,
                     backgroundColor: Colors.blueAccent,
                   ),
                   Container(
@@ -130,7 +129,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
           ),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: AppUtils.commonButtonFullWidth("Update Profile", () => null),
+            child: AppUtils.commonButtonFullWidth("Update Profile", () {
+              uploadImage(context);
+            }),
           )
         ],
       ),
@@ -151,16 +152,29 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
     }
   }
 
-  uploadImage() {
-    final imagesRef = storageRef.child(
-        "profileImage/${FirebaseAuth.instance.currentUser?.uid}.${profileImage?.path.split(".").last}");
-    UploadTask uploadTask = imagesRef.putFile(profileImage!);
+  uploadImage(context) {
+    Reference imagesRef = FirebaseStorage.instance
+        .ref("gs://photogram2-38a57.appspot.com/profileImage")
+        .child("profile_pics")
+        .child(
+            '/${FirebaseAuth.instance.currentUser?.uid}/${DateTime.now().millisecondsSinceEpoch}');
+    final metadata = SettableMetadata(
+      contentType: "image/jpeg",
+      customMetadata: {"picked-file-data": profileImage!.path},
+    );
+    UploadTask uploadTask =
+        imagesRef.putFile(File.fromUri(profileImage!.uri), metadata);
     uploadTask.whenComplete(() async {
       String imageUrl = await imagesRef.getDownloadURL();
-      print(imageUrl);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text("Image uploaded Successfuly${imagesRef.getDownloadURL()}")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Image Upload Successfully Done $imageUrl")));
     });
+  }
+
+  ImageProvider imageProvider() {
+    if (kIsWeb == true) {
+      return NetworkImage(profileImage!.path);
+    }
+    return FileImage(profileImage!);
   }
 }
